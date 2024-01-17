@@ -1,0 +1,80 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+{% endblock %}
+
+{% block js %}
+
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('.slider').bxSlider({
+          auto: true,
+          pause: 2000,
+          mode: 'fade'//horizontal, vertical, fade
+      });
+    });
+  </script>
+
+{% endblock %}
+
+
+{% block contenido %}
+
+
+<!--div >
+    <img src="{% static 'app\img\evento2.jpg' %}"  style="width: 1150px; margin: 30px; height: 600px; border: 8px solid dimgray; background-size: cover;"/>
+
+</div-->
+
+
+
+
+<div class="slider">
+    <div>
+        <img src="{% static 'app/img/banner/banner1.png' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'app/img/banner/banner2.png' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'app/img/banner/banner3.png' %}" alt="">
+    </div>
+
+</div>
+
+
+{% load humanize %}
+<div class="productos">
+
+    {% for p in productos %}
+
+    <div class="producto">
+
+        <div class="contenedor_producto">
+            {% if p.imagen %}
+            <img src="{{ p.imagen.url }}" alt="tablet lenovo">
+            {% endif %}
+            <div class="detalle">
+                <h6>{{ p.marca  | capfirst }}</h5>
+                <h5>{{ p.nombre | title }}</h2>
+                <h4>${{ p.precio | intcomma }}</h3>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+    
+
+</div>
+
+
+{% endblock %}
+
